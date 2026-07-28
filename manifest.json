@@ -52,10 +52,11 @@
     }
   },
   "background": {
-    "type": "module",
     "scripts": [
       "service/main.js"
-    ]
+    ],
+    "service_worker": "service/main.js",
+    "type": "module"
   },
   "content_scripts": [
     {

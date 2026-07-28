@@ -110,3 +110,7 @@ smol-toml/dist/index.js:
 mpd-parser/dist/mpd-parser.es.js:
   (*! @name mpd-parser @version 1.3.1 @license Apache-2.0 *)
 */
+
+import { queueManager } from "./queue_manager.js";
+queueManager.init();
+
