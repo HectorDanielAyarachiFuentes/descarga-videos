@@ -253,5 +253,161 @@
   },
   "reporting": {
     "message": "Informando…"
+  },
+  "get_premium_description_button": {
+    "message": "Descargar sin límites"
+  },
+  "rm_notifications_all": {
+    "message": "Descartar todas las notificaciones"
+  },
+  "show_all_history_button": {
+    "message": "mostrar todo"
+  },
+  "complete_title": {
+    "message": "Completado"
+  },
+  "hide_complete_button": {
+    "message": "ocultar"
+  },
+  "help_button_tooltip": {
+    "message": "Ayuda"
+  },
+  "clear_downloaded_tooltip": {
+    "message": "Limpiar descargas completadas"
+  },
+  "one_hundred_downloads_title": {
+    "message": "¡Has descargado 100 videos!"
+  },
+  "saveas_detected_warning": {
+    "message": "Hemos detectado que tu navegador muestra un cuadro de diálogo 'Guardar como' una vez finalizada la descarga. Recomendamos desactivar esa opción en la configuración de tu navegador."
+  },
+  "change_saveas_setting": {
+    "message": "Cambiar ajuste"
+  },
+  "download_directory_title": {
+    "message": "Directorio de descargas"
+  },
+  "download_directory_description": {
+    "message": "Los videos se descargan en el directorio de descargas predeterminado del navegador. También puedes especificar un subdirectorio. Los directorios de descarga específicos para cada sitio web se pueden configurar con la herramienta de nomenclatura inteligente (smartnaming)."
+  },
+  "change_browser_download_directory": {
+    "message": "Cambiar directorio de descargas del navegador"
+  },
+  "bad_download_subdirectory_warning": {
+    "message": "El subdirectorio especificado no es válido."
+  },
+  "download_subdirectory": {
+    "message": "Subdirectorio de descargas"
+  },
+  "throttle_youtube": {
+    "message": "Limitar velocidad en YouTube (descargas más lentas, pero con menos probabilidad de bloqueo)"
+  },
+  "transient_history_description": {
+    "message": "Mostrar descargas completadas en el panel"
+  },
+  "font_size_title": {
+    "message": "Tamaño del texto"
+  },
+  "font_size_default": {
+    "message": "Predeterminado"
+  },
+  "font_size_large": {
+    "message": "Grande"
+  },
+  "font_size_verylarge": {
+    "message": "Muy grande"
+  },
+  "controls_title": {
+    "message": "Controles"
+  },
+  "prefered_quality": {
+    "message": "Calidad de video preferida"
+  },
+  "prefered_quality_highest": {
+    "message": "La más alta (descarga lenta, alta resolución)"
+  },
+  "prefered_quality_1080p": {
+    "message": "1080p (buena opción por defecto)"
+  },
+  "prefered_quality_720p": {
+    "message": "720p (descarga rápida, baja resolución)"
+  },
+  "prefered_quality_480p": {
+    "message": "480p (descarga más rápida, menor resolución)"
+  },
+  "prefer_mkv": {
+    "message": "Descargar como MKV cuando sea posible"
+  },
+  "preview_mode_title": {
+    "message": "Vista previa de medios"
+  },
+  "preview_mode_none": {
+    "message": "Desactivada"
+  },
+  "preview_mode_video": {
+    "message": "Vista previa de video corta"
+  },
+  "preview_mode_image": {
+    "message": "Imagen"
+  },
+  "media_discovered_ordering_title": {
+    "message": "Estrategia de ordenación de medios"
+  },
+  "order_media_smart": {
+    "message": "Inteligente (recomendado)"
+  },
+  "order_media_by_newest": {
+    "message": "Más nuevos primero"
+  },
+  "order_media_by_oldest": {
+    "message": "Más antiguos primero"
+  },
+  "settings_subtitles_title": {
+    "message": "Idiomas de subtítulos preferidos"
+  },
+  "settings_audio_tracks_title": {
+    "message": "Pistas de audio preferidas"
+  },
+  "download_interrupted": {
+    "message": "Descarga interrumpida"
+  },
+  "download_interrupted_description": {
+    "message": "Logramos descargar tu archivo, pero hubo problemas de red, por lo que el archivo podría ser más corto de lo esperado. Intentamos dar soporte a la mayor cantidad de sitios web posible, así que ayudaría mucho si pudieras informar sobre este problema (¡es anónimo!)."
+  },
+  "no_youtube_description_2": {
+    "message": "Por favor, usa Firefox o Microsoft Edge"
+  },
+  "premium_all_required_description": {
+    "message": "Sin el estado Premium, solo se puede realizar una descarga 2 horas después de la anterior."
+  },
+  "youtube_too_many_downloads": {
+    "message": "Oops, parece que YouTube está bloqueado"
+  },
+  "youtube_too_many_downloads_description": {
+    "message": "A veces YouTube limita cuántos videos se pueden solicitar. Lamentablemente no hay nada que podamos hacer al respecto. Inténtalo de nuevo más tarde."
+  },
+  "download_as_button_and_menu": {
+    "message": "Descargar como…"
+  },
+  "rename_short": {
+    "message": "Renombrar"
+  },
+  "always_download_as_menu": {
+    "message": "Descargar siempre como…"
+  },
+  "reported_thankyou": {
+    "message": "¡Muchas gracias!"
+  },
+  "move_lang_up": {
+    "message": "Subir"
+  },
+  "move_lang_down": {
+    "message": "Bajar"
+  },
+  "remove_lang": {
+    "message": "Eliminar idioma"
+  },
+  "add_lang": {
+    "message": "Añadir idioma"
   }
 }
