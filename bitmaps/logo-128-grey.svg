@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bgGradGrey" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4B5563" />
+      <stop offset="100%" stop-color="#6B7280" />
+    </linearGradient>
+
+    <linearGradient id="glyphGradGrey" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F3F4F6" />
+      <stop offset="100%" stop-color="#D1D5DB" />
+    </linearGradient>
+  </defs>
+
+  <!-- Modern Squircle Container -->
+  <rect x="10" y="10" width="108" height="108" rx="28" fill="url(#bgGradGrey)" />
+
+  <!-- Video Play Silhouette -->
+  <path d="M 52 28 L 78 44 C 80.5 45.5 80.5 48.5 78 50 L 52 66 C 49.5 67.5 47 66 47 63 L 47 31 C 47 28 49.5 26.5 52 28 Z" fill="#FFFFFF" opacity="0.2" />
+
+  <!-- Innovator Download Arrow -->
+  <rect x="56" y="34" width="16" height="34" rx="4" fill="url(#glyphGradGrey)" />
+  <path d="M 38 62 L 64 88 L 90 62 C 92 60 90.5 57 88 57 L 76 57 L 76 57 L 52 57 L 40 57 C 37.5 57 36 60 38 62 Z" fill="url(#glyphGradGrey)" />
+
+  <!-- Minimalist Media Arc -->
+  <path d="M 36 94 C 44 101 84 101 92 94" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.75" />
+
+  <!-- Indicator -->
+  <circle cx="94" cy="34" r="5" fill="#9CA3AF" />
+</svg>
