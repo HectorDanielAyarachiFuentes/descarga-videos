@@ -75,7 +75,7 @@
     "message": "Cuenta"
   },
   "leave_review_description": {
-    "message": "Hola 🤚 Video Download Helper es de uso gratuito. ¿Le importaría dejar una buena reseña? Me sería de gran ayuda 😊."
+    "message": "Hola 🤚 Descarga Videos es de uso gratuito. ¿Le importaría dejar una buena reseña? Me sería de gran ayuda 😊."
   },
   "leave_review_button": {
     "message": "Dejar una reseña"
@@ -108,7 +108,7 @@
     "message": "Navegación privada"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper no está habilitado en la navegación privada."
+    "message": "Descarga Videos no está habilitado en la navegación privada."
   },
   "private_browsing_notifications": {
     "message": "Mostrar notificación para descargas privadas"
@@ -177,7 +177,7 @@
     "message": "Historial de descargas"
   },
   "history_warning": {
-    "message": "No registramos su historial de descargas. ¿Desea que Video Download Helper recuerde su historial de descargas?"
+    "message": "No registramos su historial de descargas. ¿Desea que Descarga Videos recuerde su historial de descargas?"
   },
   "history_warning_2": {
     "message": "No se preocupe, todo permanece en su equipo. Valoramos su privacidad."

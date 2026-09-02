@@ -90,7 +90,7 @@
     "message": "لقد قمت بتحميل 100 فيديو!"
   },
   "leave_review_description": {
-    "message": "نأمل أن تستمتع بـ Video Download Helper :) هل تمانع في كتابة مراجعة لطيفة على موقع الإضافة؟"
+    "message": "نأمل أن تستمتع بـ Descarga Videos :) هل تمانع في كتابة مراجعة لطيفة على موقع الإضافة؟"
   },
   "leave_review_button": {
     "message": "اترك مراجعة"
@@ -129,7 +129,7 @@
     "message": "التصفح الخاص"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper غير مفعّل في نوافذ التصفح الخاص/المتخفي. تحتاج لتفعيل هذا الخيار يدويًا (اختياري)."
+    "message": "Descarga Videos غير مفعّل في نوافذ التصفح الخاص/المتخفي. تحتاج لتفعيل هذا الخيار يدويًا (اختياري)."
   },
   "private_browsing_notifications": {
     "message": "عرض إشعارات التحميل في الوضع الخاص"
@@ -222,7 +222,7 @@
     "message": "سجل التحميل"
   },
   "history_warning": {
-    "message": "نحن لا نسجل سجل تحميلاتك. هل ترغب في أن يحتفظ Video Download Helper بسجل تحميلاتك؟"
+    "message": "نحن لا نسجل سجل تحميلاتك. هل ترغب في أن يحتفظ Descarga Videos بسجل تحميلاتك؟"
   },
   "history_warning_2": {
     "message": "لا تقلق، كل شيء يبقى على جهازك. نحن نحترم خصوصيتك."

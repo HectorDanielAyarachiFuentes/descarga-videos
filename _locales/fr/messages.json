@@ -96,7 +96,7 @@
     "message": "Vous avez téléchargé 100 vidéos !"
   },
   "leave_review_description": {
-    "message": "Nous espérons que vous appréciez Video Download Helper :) Voudriez-vous laisser un gentil commentaire sur le site de l'addon ?"
+    "message": "Nous espérons que vous appréciez Descarga Videos :) Voudriez-vous laisser un gentil commentaire sur le site de l'addon ?"
   },
   "leave_review_button": {
     "message": "Laissez un commentaire"
@@ -150,7 +150,7 @@
     "message": "Navigation privée"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper n'est pas activé en mode navigation privée. Vous devez activer cette option à la main. (ce n'est pas obligatoire)"
+    "message": "Descarga Videos n'est pas activé en mode navigation privée. Vous devez activer cette option à la main. (ce n'est pas obligatoire)"
   },
   "private_browsing_notifications": {
     "message": "Afficher une notification même en navigation privée"

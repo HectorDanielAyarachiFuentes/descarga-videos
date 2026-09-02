@@ -96,7 +96,7 @@
     "message": "Sie haben 100 Videos heruntergeladen!"
   },
   "leave_review_description": {
-    "message": "Wir hoffen, Ihnen gefällt Video Download Helper. Hinterlassen Sie uns bitte noch eine gute Bewertung auf der Add-on-Seite."
+    "message": "Wir hoffen, Ihnen gefällt Descarga Videos. Hinterlassen Sie uns bitte noch eine gute Bewertung auf der Add-on-Seite."
   },
   "leave_review_button": {
     "message": "Eine Bewertung hinterlassen"
@@ -150,7 +150,7 @@
     "message": "Privates Surfen"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper ist nicht im Privat-/Inkognito-Fenster aktiviert. Sie müssen diese Option manuell einschalten (dies ist nicht erforderlich)."
+    "message": "Descarga Videos ist nicht im Privat-/Inkognito-Fenster aktiviert. Sie müssen diese Option manuell einschalten (dies ist nicht erforderlich)."
   },
   "private_browsing_notifications": {
     "message": "Benachrichtigung für private Downloads anzeigen"
@@ -288,7 +288,7 @@
     "message": "Downloadchronik"
   },
   "history_warning": {
-    "message": "Es ist keine Downloadchronik angelegt. Möchten Sie, dass Video Download Helper eine Downloadchronik anlegt?"
+    "message": "Es ist keine Downloadchronik angelegt. Möchten Sie, dass Descarga Videos eine Downloadchronik anlegt?"
   },
   "history_warning_2": {
     "message": "Keine Sorge, alles bleibt auf Ihrem Gerät. Wir respektieren Ihre Privatsphäre."

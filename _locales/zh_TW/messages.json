@@ -75,7 +75,7 @@
     "message": "帳戶"
   },
   "leave_review_description": {
-    "message": "希望您喜歡 Video Download Helper， 您介意在外網上給予好評嗎？"
+    "message": "希望您喜歡 Descarga Videos， 您介意在外網上給予好評嗎？"
   },
   "leave_review_button": {
     "message": "發表評論"
@@ -108,7 +108,7 @@
     "message": "私密瀏覽"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper 於無痕視窗中未啟用自動偵測，請手動啟用 (如非必要)"
+    "message": "Descarga Videos 於無痕視窗中未啟用自動偵測，請手動啟用 (如非必要)"
   },
   "private_browsing_notifications": {
     "message": "顯示私密下載通知"
@@ -177,7 +177,7 @@
     "message": "下載紀錄"
   },
   "history_warning": {
-    "message": "我們不會記錄您的下載紀錄。是否要 Video Download Helper 記住您的下載紀錄？"
+    "message": "我們不會記錄您的下載紀錄。是否要 Descarga Videos 記住您的下載紀錄？"
   },
   "history_warning_2": {
     "message": "別擔心，一切都會保留在您的電腦上。我們重視您的隱私。"

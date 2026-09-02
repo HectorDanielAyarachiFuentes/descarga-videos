@@ -75,7 +75,7 @@
     "message": "Konto"
   },
   "leave_review_description": {
-    "message": "Mamy nadzieję, że podoba Ci się Video Download Helper :) Czy zechciałbyś napisać miłą recenzję na stronie dodatku?"
+    "message": "Mamy nadzieję, że podoba Ci się Descarga Videos :) Czy zechciałbyś napisać miłą recenzję na stronie dodatku?"
   },
   "leave_review_button": {
     "message": "Zostaw recenzję"
@@ -108,7 +108,7 @@
     "message": "Przeglądanie prywatne"
   },
   "private_browsing_warning": {
-    "message": "Narzędzie Video Download Helper nie jest włączone w oknach prywatnych/incognito. Musisz włączyć tę opcję ręcznie (nie jest to wymagane)."
+    "message": "Narzędzie Descarga Videos nie jest włączone w oknach prywatnych/incognito. Musisz włączyć tę opcję ręcznie (nie jest to wymagane)."
   },
   "private_browsing_notifications": {
     "message": "Pokaż powiadomienie dla prywatnych pobrań"
@@ -177,7 +177,7 @@
     "message": "Historia pobierania"
   },
   "history_warning": {
-    "message": "Nie rejestrujemy historii pobierania. Czy chcesz, aby Video Download Helper zapamiętywał historię pobierania?"
+    "message": "Nie rejestrujemy historii pobierania. Czy chcesz, aby Descarga Videos zapamiętywał historię pobierania?"
   },
   "history_warning_2": {
     "message": "Nie martw się, wszystko pozostanie w twoim komputerze. Cenimy twoją prywatność."

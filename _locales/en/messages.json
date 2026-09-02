@@ -99,7 +99,7 @@
     "message": "You've downloaded 100 videos!"
   },
   "leave_review_description": {
-    "message": "We hope you're enjoying Video Download Helper :) Would you mind writing a nice review on the addon website?"
+    "message": "We hope you're enjoying Descarga Videos :) Would you mind writing a nice review on the addon website?"
   },
   "leave_review_button": {
     "message": "Leave a review"
@@ -153,7 +153,7 @@
     "message": "Private browsing"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper is not enabled in a Private/Incognito windows. You need to turn on that option manually (this is not required)."
+    "message": "Descarga Videos is not enabled in a Private/Incognito windows. You need to turn on that option manually (this is not required)."
   },
   "private_browsing_notifications": {
     "message": "Show notification for private downloads"
@@ -291,7 +291,7 @@
     "message": "Download History"
   },
   "history_warning": {
-    "message": "We do not record your download history. Do you want Video Download Helper to remember your download history?"
+    "message": "We do not record your download history. Do you want Descarga Videos to remember your download history?"
   },
   "history_warning_2": {
     "message": "Don't worry, everything stays on your machine. We value your privacy."

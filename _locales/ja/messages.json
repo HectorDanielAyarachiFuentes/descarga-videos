@@ -96,7 +96,7 @@
     "message": "100本の動画をダウンロードしました！"
   },
   "leave_review_description": {
-    "message": "Video Download Helper をお楽しみいただければ幸いです :) アドオン Web サイトに素敵なレビューを書いていただけませんか?"
+    "message": "Descarga Videos をお楽しみいただければ幸いです :) アドオン Web サイトに素敵なレビューを書いていただけませんか?"
   },
   "leave_review_button": {
     "message": "レビューする"
@@ -150,7 +150,7 @@
     "message": "プライベートブラウズモード"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helperは プライベート/シークレット ウィンドウで有効化されません。使用するには、手動で有効にする必要があります（必須ではありません）。"
+    "message": "Descarga Videosは プライベート/シークレット ウィンドウで有効化されません。使用するには、手動で有効にする必要があります（必須ではありません）。"
   },
   "private_browsing_notifications": {
     "message": "プライベートダウンロードの通知を表示する"
@@ -255,7 +255,7 @@
     "message": "ダウンロード履歴"
   },
   "history_warning": {
-    "message": "ダウンロード履歴は記録されていません。Video Download Helper でダウンロード履歴を記録しますか？"
+    "message": "ダウンロード履歴は記録されていません。Descarga Videos でダウンロード履歴を記録しますか？"
   },
   "history_warning_2": {
     "message": "ご安心ください。データはすべてお使いの端末内に保存されます。我々はプライバシーを尊重しています。"

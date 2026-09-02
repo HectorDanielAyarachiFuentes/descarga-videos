@@ -99,7 +99,7 @@
     "message": "Hai scaricato 100 video!"
   },
   "leave_review_description": {
-    "message": "Ci auguriamo che Video Download Helper ti piaccia :) Ti dispiacerebbe scrivere una recensione positiva nel sito web dell'estensione?"
+    "message": "Ci auguriamo che Descarga Videos ti piaccia :) Ti dispiacerebbe scrivere una recensione positiva nel sito web dell'estensione?"
   },
   "leave_review_button": {
     "message": "Scrivi una recensione"
@@ -153,7 +153,7 @@
     "message": "Navigazione anonima"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper non è abilitato alla navigazione anonima."
+    "message": "Descarga Videos non è abilitato alla navigazione anonima."
   },
   "private_browsing_notifications": {
     "message": "Visualizza una notifica per i download in navigazione anonima"
@@ -291,7 +291,7 @@
     "message": "Cronologia download"
   },
   "history_warning": {
-    "message": "Non registriamo la cronologia download. Vuoi che Video Download Helper ricordi la cronologia download?"
+    "message": "Non registriamo la cronologia download. Vuoi che Descarga Videos ricordi la cronologia download?"
   },
   "history_warning_2": {
     "message": "Non ti preoccupare, tutto rimane in questo computer. Apprezziamo la tua privacy."

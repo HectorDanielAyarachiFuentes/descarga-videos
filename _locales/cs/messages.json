@@ -93,7 +93,7 @@
     "message": "Stáhl jste 100 videí!"
   },
   "leave_review_description": {
-    "message": "Jsme rádi, že si užíváte Video Download Helper :) Nechtěl byste napsat hezkou recenzi na stránkách obchodu s addony? "
+    "message": "Jsme rádi, že si užíváte Descarga Videos :) Nechtěl byste napsat hezkou recenzi na stránkách obchodu s addony? "
   },
   "leave_review_button": {
     "message": "Zanechat recenzi"
@@ -132,7 +132,7 @@
     "message": "Soukromé procházení"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper není povolen v soukromých/anonymních oknech. Musíte to povolit ručně (není vyžadováno)."
+    "message": "Descarga Videos není povolen v soukromých/anonymních oknech. Musíte to povolit ručně (není vyžadováno)."
   },
   "private_browsing_notifications": {
     "message": "Zobrazit oznámení pro soukromá stahování"
@@ -237,7 +237,7 @@
     "message": "Historie stahování"
   },
   "history_warning": {
-    "message": "Nezaznamenáváme vaši historii stahování. Chcete, aby si Video Download Helper pamatoval vaši historii stahování?"
+    "message": "Nezaznamenáváme vaši historii stahování. Chcete, aby si Descarga Videos pamatoval vaši historii stahování?"
   },
   "history_warning_2": {
     "message": "Buďte v klidu, všechno zůstává na vašem počítači. Ceníme si vašeho soukromí."

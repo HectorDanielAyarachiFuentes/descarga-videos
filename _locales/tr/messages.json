@@ -96,7 +96,7 @@
     "message": "100 video indirdin!"
   },
   "leave_review_description": {
-    "message": "Video Download Helper'ı beğendiğini umuyoruz :) Eklenti web sitesine hoş bir inceleme yazman mümkün mü?"
+    "message": "Descarga Videos'ı beğendiğini umuyoruz :) Eklenti web sitesine hoş bir inceleme yazman mümkün mü?"
   },
   "leave_review_button": {
     "message": "İnceleme yaz"
@@ -150,7 +150,7 @@
     "message": "Gizli gezinme"
   },
   "private_browsing_warning": {
-    "message": "Video Download Helper, Özel/Gizli pencerelerde etkin değil. Bu seçeneği manuel olarak açmanız gerekiyor (zorunlu değil)."
+    "message": "Descarga Videos, Özel/Gizli pencerelerde etkin değil. Bu seçeneği manuel olarak açmanız gerekiyor (zorunlu değil)."
   },
   "private_browsing_notifications": {
     "message": "Gizli indirmeler için bildirim göster"
@@ -282,7 +282,7 @@
     "message": "İndirme Geçmişi"
   },
   "history_warning": {
-    "message": "İndirme geçmişinizi kaydetmiyoruz. Video Download Helper'ın indirme geçmişini hatırlamasını ister misin?"
+    "message": "İndirme geçmişinizi kaydetmiyoruz. Descarga Videos'ın indirme geçmişini hatırlamasını ister misin?"
   },
   "history_warning_2": {
     "message": "Endişelenmeyin, her şey bilgisayarınızda kalır. Gizliliğinize değer veriyoruz."

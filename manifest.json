@@ -1,6 +1,5 @@
 {
   "author": "Hector Daniel Ayarachi Fuentes",
-
   "name": "Descarga Videos",
   "homepage_url": "https://descargavideos.app",
   "description": "__MSG_appDesc__",
@@ -35,7 +34,6 @@
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'"
   },
   "action": {
-
     "default_title": "Descarga Videos",
     "default_icon": {
       "16": "bitmaps/icon-16.png",
@@ -281,13 +279,12 @@
     "default_icon": "/bitmaps/logo-128-color.png",
     "browser_style": false,
     "open_at_install": false,
-
     "default_title": "Descarga Videos"
   },
   "browser_specific_settings": {
     "gecko": {
       "strict_min_version": "115.0",
-      "id": "{b9db16a4-6edc-47ec-a1f4-b86292ed211d}"
+      "id": "descarga-videos@descargavideos.app"
     }
   },
   "version": "10.5.10.2"
