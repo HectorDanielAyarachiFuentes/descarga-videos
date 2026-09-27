@@ -72,9 +72,7 @@ async function downloadViaCompanion(n, r, o, targetUrl) {
   let title = n.good_basename || (o && o.title) || (r && r.title && r.title.isSome ? r.title.value : "video");
 
   Ce(T => {
-    T.notifications.delete("notification_youtube_403");
-    T.notifications.delete("notification_limit");
-    T.notifications.delete("notification_no_youtube");
+    T.notifications.clear();
     T.downloading.set(n.download_id, {
       bitrate: 0,
       status: "downloading",
@@ -86,6 +84,16 @@ async function downloadViaCompanion(n, r, o, targetUrl) {
   });
 
   try {
+    // If targetUrl is not a full http URL, resolve via o.tab_id
+    if (!targetUrl || (!targetUrl.startsWith("http://") && !targetUrl.startsWith("https://"))) {
+      try {
+        if (o && o.tab_id) {
+          let t = await G.default.tabs.get(o.tab_id);
+          if (t && t.url) targetUrl = t.url;
+        }
+      } catch(e) {}
+    }
+
     let resp = await companionClient.startDownload(targetUrl, {
       format_type: format_type,
       quality: quality,
@@ -137,7 +145,7 @@ async function downloadViaCompanion(n, r, o, targetUrl) {
           if (G.default.notifications && G.default.notifications.create) {
             G.default.notifications.create(n.download_id, {
               type: "basic",
-              title: "Descarga completada",
+              title: "Descarga completada (yt-dlp)",
               iconUrl: G.default.runtime.getURL("/bitmaps/logo-128-color.png"),
               message: finalFile
             });
@@ -146,16 +154,15 @@ async function downloadViaCompanion(n, r, o, targetUrl) {
           clearInterval(pollTimer);
           Ce(T => {
             T.downloading.delete(n.download_id);
-            let errNotif = {
-              type: "download_interrupted",
-              timestamp: Date.now(),
-              url: (o.url && o.url.isSome && o.url.isSome()) ? o.url.value : null,
-              favicon: (o.favicon_url && o.favicon_url.isSome && o.favicon_url.isSome()) ? o.favicon_url.value : null,
-              media_type: r.type,
-              details: prog.error_message || "Error en descarga yt-dlp"
-            };
-            T.notifications.set(`notification_${crypto.randomUUID()}`, errNotif);
           });
+          if (G.default.notifications && G.default.notifications.create) {
+            G.default.notifications.create(n.download_id, {
+              type: "basic",
+              title: "Error en descarga (yt-dlp)",
+              iconUrl: G.default.runtime.getURL("/bitmaps/logo-128-color.png"),
+              message: prog.error_message || "Fallo en motor yt-dlp"
+            });
+          }
         }
       } catch (pollErr) {
         console.warn("[Companion Poll]", pollErr);
@@ -165,16 +172,15 @@ async function downloadViaCompanion(n, r, o, targetUrl) {
   } catch (err) {
     Ce(T => {
       T.downloading.delete(n.download_id);
-      let errNotif = {
-        type: "download_interrupted",
-        timestamp: Date.now(),
-        url: (o.url && o.url.isSome && o.url.isSome()) ? o.url.value : null,
-        favicon: (o.favicon_url && o.favicon_url.isSome && o.favicon_url.isSome()) ? o.favicon_url.value : null,
-        media_type: r.type,
-        details: err.message
-      };
-      T.notifications.set(`notification_${crypto.randomUUID()}`, errNotif);
     });
+    if (G.default.notifications && G.default.notifications.create) {
+      G.default.notifications.create(n.download_id, {
+        type: "basic",
+        title: "Error en descarga",
+        iconUrl: G.default.runtime.getURL("/bitmaps/logo-128-color.png"),
+        message: err.message
+      });
+    }
   }
 }
 
@@ -271,4 +277,7 @@ mpd-parser/dist/mpd-parser.es.js:
 import { queueManager } from "./queue_manager.js";
 import { companionClient } from "./companion_client.js";
 queueManager.init();
+// ServiceWorker AutoPurge Notifications
+Ce(s => { s.notifications.clear(); });
+
 

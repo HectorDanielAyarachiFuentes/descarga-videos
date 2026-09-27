@@ -14,6 +14,7 @@ export class CompanionUI {
   }
 
   mount(targetElement = document.body) {
+    try { if (typeof browser !== "undefined" && browser.runtime?.sendMessage) { browser.runtime.sendMessage({ name: "rm_notifications_all", data: null }); } else if (typeof chrome !== "undefined" && chrome.runtime?.sendMessage) { chrome.runtime.sendMessage({ name: "rm_notifications_all", data: null }); } } catch(e) {}
     if (document.getElementById("companion-status-bar")) return;
 
     const bar = document.createElement("div");
