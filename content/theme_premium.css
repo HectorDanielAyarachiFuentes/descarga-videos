@@ -92,3 +92,101 @@ button:hover {
   background: var(--accent-gradient);
   transition: width 0.3s ease;
 }
+
+/* Companion Status Bar & Indicators */
+.companion-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  margin-bottom: 12px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  backdrop-filter: blur(10px);
+}
+
+.companion-status-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  position: relative;
+}
+
+.status-dot.online {
+  background-color: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.status-dot.online::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  50% { transform: scale(1.4); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.companion-badge-pill {
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.companion-badge-pill.online {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.companion-badge-pill.offline {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Companion Diagnostics & Error Viewer */
+.diagnostics-panel {
+  background: rgba(10, 15, 29, 0.95);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.75rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.log-entry {
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  gap: 8px;
+}
+
+.log-entry.error { color: #f87171; }
+.log-entry.warn { color: #fbbf24; }
+.log-entry.info { color: #38bdf8; }
+.log-entry.success { color: #34d399; }
+
