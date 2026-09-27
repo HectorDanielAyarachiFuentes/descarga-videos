@@ -3,6 +3,15 @@ Nueva carpeta/
 *cookies.txt
 cookies.txt
 
+# Secrets & Environment
+.env*
+*.env
+*.pem
+*.key
+*.cert
+credentials.json
+secrets/
+
 # Local Agent configs & caches
 .continue/
 .claude/
