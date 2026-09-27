@@ -98,17 +98,20 @@ export class CompanionClient {
   /**
    * Sends a download request to the local yt-dlp engine
    */
-  async requestDownload({ url, format_type = "video", quality = "best", title = "", thumbnail = "" }) {
+  async requestDownload({ url, format_type = "video", quality = "best", title = "", thumbnail = "", output_dir = undefined }) {
     const conn = await this.checkConnection();
     if (!conn.online) {
       throw new Error("El motor companion yt-dlp no está conectado. Inicia run_companion.bat.");
     }
 
     try {
+      const payload = { url, format_type, quality, title, thumbnail };
+      if (output_dir) payload.output_dir = output_dir;
+
       const resp = await fetch(`${this.getBaseUrl()}/api/download`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url, format_type, quality, title, thumbnail })
+        body: JSON.stringify(payload)
       });
 
       if (!resp.ok) {
@@ -123,12 +126,52 @@ export class CompanionClient {
   }
 
   /**
+   * Starts a download (supports both (url, options) and ({ url, ... }) signatures)
+   */
+  async startDownload(urlOrOptions, maybeOptions = {}) {
+    let payload = {};
+    if (typeof urlOrOptions === "string") {
+      payload = { url: urlOrOptions, ...maybeOptions };
+    } else if (urlOrOptions && typeof urlOrOptions === "object") {
+      payload = { ...urlOrOptions, ...maybeOptions };
+    }
+    return this.requestDownload(payload);
+  }
+
+  /**
+   * Retrieves status for a specific download ID or the active download
+   * Returns { success: true, data: prog } format expected by service worker
+   */
+  async getDownloadStatus(downloadId = null) {
+    const conn = await this.checkConnection();
+    if (!conn.online) {
+      return { success: false, data: null, error: "Companion offline" };
+    }
+    try {
+      const url = downloadId 
+        ? `${this.getBaseUrl()}/api/progress?id=${encodeURIComponent(downloadId)}`
+        : `${this.getBaseUrl()}/api/progress`;
+      const resp = await fetch(url);
+      if (!resp.ok) {
+        return { success: false, data: null };
+      }
+      const data = await resp.json();
+      return { success: true, data };
+    } catch (err) {
+      return { success: false, data: null, error: err.message };
+    }
+  }
+
+  /**
    * Retrieves active download progress
    */
-  async getProgress() {
+  async getProgress(downloadId = null) {
     if (!this.isOnline) return { status: "idle", companion_online: false };
     try {
-      const resp = await fetch(`${this.getBaseUrl()}/api/progress`);
+      const url = downloadId 
+        ? `${this.getBaseUrl()}/api/progress?id=${encodeURIComponent(downloadId)}`
+        : `${this.getBaseUrl()}/api/progress`;
+      const resp = await fetch(url);
       if (!resp.ok) return { status: "idle" };
       return await resp.json();
     } catch (err) {

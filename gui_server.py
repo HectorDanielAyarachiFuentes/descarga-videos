@@ -239,6 +239,10 @@ class DownloadManager:
     def update_progress(self, dl_id, data):
         with self.lock:
             if dl_id in self.downloads:
+                if "error_message" in data and "error" not in data:
+                    data["error"] = data["error_message"]
+                elif "error" in data and "error_message" not in data:
+                    data["error_message"] = data["error"]
                 self.downloads[dl_id].update(data)
 
     def get_download(self, dl_id):
@@ -660,8 +664,18 @@ class WebUIHandler(SimpleHTTPRequestHandler):
             self.send_json(data)
             return
 
-        if path == "/api/progress":
+        if path in ("/api/progress", "/api/download/status"):
+            dl_id = params.get("id", [""])[0]
+            if dl_id:
+                dl = manager.get_download(dl_id)
+                if dl:
+                    if "error_message" in dl and "error" not in dl:
+                        dl["error"] = dl["error_message"]
+                    self.send_json(dl)
+                    return
             active = manager.get_active()
+            if active and "error_message" in active and "error" not in active:
+                active["error"] = active["error_message"]
             self.send_json(active or {"status": "idle"})
             return
 

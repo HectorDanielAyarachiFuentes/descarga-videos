@@ -69,6 +69,21 @@ async function downloadViaCompanion(n, r, o, targetUrl) {
   let isAudio = (n.extension === "mp3" || (n.strategy && n.strategy.includes("audio_only")));
   let format_type = isAudio ? "audio" : "video";
   let quality = isAudio ? "320" : String(j().prefered_quality || "best");
+
+  try {
+    if (!isAudio && r && r.playlist) {
+      let prefIdx = typeof r.prefered_entry?.value === "number" ? r.prefered_entry.value : (typeof r.prefered_entry === "number" ? r.prefered_entry : null);
+      if (prefIdx !== null && r.playlist[prefIdx]) {
+        let entry = r.playlist[prefIdx];
+        let h = entry?.quality?.size?.value?.height || entry?.quality?.size?.height;
+        if (h && typeof h === "number") quality = String(h);
+      }
+    }
+    if (!isAudio && n && n.quality && typeof n.quality === "string" && !isNaN(parseInt(n.quality))) {
+      quality = String(n.quality);
+    }
+  } catch(e) {}
+
   let title = n.good_basename || (o && o.title) || (r && r.title && r.title.isSome ? r.title.value : "video");
 
   Ce(T => {
@@ -84,19 +99,44 @@ async function downloadViaCompanion(n, r, o, targetUrl) {
   });
 
   try {
+    let getClean = (u) => {
+      if (!u) return "";
+      if (typeof u === "string") return u;
+      if (u.href && typeof u.href === "string") return u.href;
+      if (typeof u.isSome === "function" && u.isSome()) {
+        let v = u.value;
+        if (typeof v === "string") return v;
+        if (v && v.href) return v.href;
+      }
+      if (u.value) {
+        let v = u.value;
+        if (typeof v === "string") return v;
+        if (v && v.href) return v.href;
+      }
+      return "";
+    };
+
     let isDirectCdn = targetUrl && (targetUrl.includes("googlevideo.com") || targetUrl.includes("videoplayback"));
     if (!targetUrl || (!targetUrl.startsWith("http://") && !targetUrl.startsWith("https://")) || isDirectCdn) {
       try {
-        let candidate = "";
-        if (r && r.initiator) candidate = typeof r.initiator === "string" ? r.initiator : (r.initiator.href || "");
-        if (!candidate && o && o.url) {
-          candidate = typeof o.url === "string" ? o.url : (o.url.href || (o.url.isSome && o.url.isSome() ? (o.url.value.href || o.url.value) : ""));
-        }
+        let candidate = getClean(r?.initiator) || getClean(o?.url) || getClean(r?.master_url);
         if (candidate && (candidate.includes("youtube.com") || candidate.includes("youtu.be"))) {
           targetUrl = candidate;
-        } else if (o && o.tab_id) {
-          let t = await G.default.tabs.get(o.tab_id);
-          if (t && t.url) targetUrl = t.url;
+        } else {
+          let tabId = typeof o?.tab_id === "number" ? o.tab_id : (o?.tab_id?.isSome && o.tab_id.isSome() ? o.tab_id.value : o?.tab_id?.value);
+          if (tabId) {
+            let t = await G.default.tabs.get(tabId);
+            if (t && t.url && (t.url.includes("youtube.com") || t.url.includes("youtu.be"))) targetUrl = t.url;
+          }
+        }
+      } catch(e) {}
+    }
+
+    if (!targetUrl || targetUrl.includes("googlevideo.com") || (!targetUrl.includes("youtube.com") && !targetUrl.includes("youtu.be"))) {
+      try {
+        let tabs = await G.default.tabs.query({ active: true, currentWindow: true });
+        if (tabs && tabs[0] && tabs[0].url && (tabs[0].url.includes("youtube.com") || tabs[0].url.includes("youtu.be"))) {
+          targetUrl = tabs[0].url;
         }
       } catch(e) {}
     }
@@ -179,15 +219,11 @@ async function downloadViaCompanion(n, r, o, targetUrl) {
     console.error("Error al delegar al companion:", err);
     Ce(T => {
       T.downloading.delete(n.download_id);
-      T.notifications.set("notification_download_failed", {
-        type: "remote",
-        message: err.message
-      });
     });
     if (G.default.notifications && G.default.notifications.create) {
       G.default.notifications.create(n.download_id, {
         type: "basic",
-        title: "Error de descarga",
+        title: "Error de descarga (yt-dlp)",
         iconUrl: G.default.runtime.getURL("/bitmaps/logo-128-color.png"),
         message: err.message
       });
