@@ -119,6 +119,20 @@ export class CompanionUI {
   }
 
   setOnline(info) {
+    // Auto-purge stale artificial block warnings from old extension
+    try {
+      const sendRm = (id) => {
+        if (typeof browser !== "undefined" && browser.runtime?.sendMessage) {
+          browser.runtime.sendMessage({ name: "rm_notification", data: { notification_id: id } }).catch(() => {});
+        } else if (typeof chrome !== "undefined" && chrome.runtime?.sendMessage) {
+          chrome.runtime.sendMessage({ name: "rm_notification", data: { notification_id: id } }, () => {});
+        }
+      };
+      sendRm("notification_youtube_403");
+      sendRm("notification_limit");
+      sendRm("notification_no_youtube");
+    } catch (e) {}
+
     if (this.statusDot) {
       this.statusDot.className = "status-dot online";
     }

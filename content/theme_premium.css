@@ -190,3 +190,10 @@ button:hover {
 .log-entry.info { color: #38bdf8; }
 .log-entry.success { color: #34d399; }
 
+/* Supresión de alertas obsoletas de la vieja aplicación */
+.level-error:has(.report-button),
+.notification-card.level-error:has(button[id*="report"]) {
+  display: none !important;
+}
+
+
