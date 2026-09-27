@@ -62,7 +62,13 @@ export class CompanionUI {
 
     // Listeners
     bar.querySelector("#companion-folder-btn")?.addEventListener("click", () => {
-      chrome.runtime.sendMessage({ type: "COMPANION_OPEN_FOLDER" });
+      fetch("http://127.0.0.1:5000/api/open-folder", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({})
+      }).catch(() => {
+        chrome.runtime.sendMessage({ type: "COMPANION_OPEN_FOLDER" });
+      });
     });
 
     bar.querySelector("#companion-diag-btn")?.addEventListener("click", () => {
@@ -74,21 +80,42 @@ export class CompanionUI {
     });
 
     this.pollStatus();
-    setInterval(() => this.pollStatus(), 8000);
+    setInterval(() => this.pollStatus(), 3000);
   }
 
   async pollStatus() {
+    // 1. Direct fetch to local server (fast, doesn't depend on background worker reload)
     try {
-      chrome.runtime.sendMessage({ type: "COMPANION_CHECK" }, (resp) => {
-        if (chrome.runtime.lastError || !resp || !resp.online) {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 1200);
+      const resp = await fetch("http://127.0.0.1:5000/api/status", { signal: controller.signal });
+      clearTimeout(timeoutId);
+      if (resp.ok) {
+        const data = await resp.json();
+        this.setOnline(data);
+        return;
+      }
+    } catch (e) {
+      // Direct fetch failed, try background fallback
+    }
+
+    // 2. Fallback to service worker message
+    try {
+      if (typeof chrome !== "undefined" && chrome.runtime?.sendMessage) {
+        chrome.runtime.sendMessage({ type: "COMPANION_CHECK" }, (resp) => {
+          if (!chrome.runtime.lastError && resp && resp.online) {
+            this.setOnline(resp.data);
+            return;
+          }
           this.setOffline();
-        } else {
-          this.setOnline(resp.data);
-        }
-      });
+        });
+        return;
+      }
     } catch {
       this.setOffline();
     }
+
+    this.setOffline();
   }
 
   setOnline(info) {
@@ -99,6 +126,7 @@ export class CompanionUI {
       this.badgePill.className = "companion-badge-pill online";
       const ffmpeg = info?.ffmpeg_available ? "FFmpeg OK" : "Sin FFmpeg";
       this.badgePill.textContent = `En Línea (${ffmpeg})`;
+      this.badgePill.title = `Versión yt-dlp: ${info?.version || 'N/A'}`;
     }
   }
 
@@ -109,7 +137,7 @@ export class CompanionUI {
     if (this.badgePill) {
       this.badgePill.className = "companion-badge-pill offline";
       this.badgePill.textContent = "Desconectado";
-      this.badgePill.title = "Ejecuta run_companion.bat en la raíz del proyecto para activar el motor yt-dlp.";
+      this.badgePill.title = "Haz doble clic en run_companion.bat en la raíz para activar el motor yt-dlp.";
     }
   }
 
@@ -123,44 +151,83 @@ export class CompanionUI {
     }
   }
 
-  refreshDiagnostics() {
+  async refreshDiagnostics() {
     const container = document.getElementById("diagnostics-logs-content");
     if (!container) return;
 
-    container.innerHTML = `<div style="color:#94a3b8;">Cargando diagnóstico...</div>`;
+    container.innerHTML = `<div style="color:#94a3b8;">Consultando estado del servidor...</div>`;
 
-    chrome.runtime.sendMessage({ type: "COMPANION_DIAGNOSTICS" }, (resp) => {
-      if (!resp || resp.status === "offline" || !resp.entries) {
-        container.innerHTML = `
-          <div class="log-entry warn">
-            <span>[AVISO]</span>
-            <span>El servidor Companion no responde en 127.0.0.1:5000.</span>
-          </div>
-          <div style="color:#94a3b8; font-size:0.75rem; margin-top:4px;">
-            Inicia <code>run_companion.bat</code> para habilitar logs avanzados de yt-dlp y descargas de alta resolución.
-          </div>
-        `;
+    // 1. Direct fetch
+    try {
+      const resp = await fetch("http://127.0.0.1:5000/api/diagnostics");
+      if (resp.ok) {
+        const data = await resp.json();
+        this.renderDiagnostics(data.entries || [], data);
         return;
       }
+    } catch (e) {
+      // Try background fallback
+    }
 
-      if (resp.entries.length === 0) {
-        container.innerHTML = `
-          <div class="log-entry success">
-            <span>[OK]</span>
-            <span>Servidor Companion activo sin errores registrados.</span>
-          </div>
-        `;
-        return;
-      }
+    // 2. Background fallback
+    try {
+      chrome.runtime.sendMessage({ type: "COMPANION_DIAGNOSTICS" }, (resp) => {
+        if (!resp || resp.status === "offline" || !resp.entries) {
+          container.innerHTML = `
+            <div class="log-entry warn">
+              <span>[AVISO]</span>
+              <span>El servidor Companion no responde en 127.0.0.1:5000.</span>
+            </div>
+            <div style="color:#94a3b8; font-size:0.75rem; margin-top:4px;">
+              Inicia <code>run_companion.bat</code> para habilitar logs avanzados de yt-dlp y descargas de alta resolución.
+            </div>
+          `;
+          return;
+        }
 
-      container.innerHTML = resp.entries.map(e => `
-        <div class="log-entry ${e.level.toLowerCase()}">
-          <span style="opacity:0.6;">[${e.time_str || ''}]</span>
-          <strong>[${e.level}]</strong>
-          <span>${e.message}</span>
+        this.renderDiagnostics(resp.entries || [], resp);
+      });
+    } catch {
+      container.innerHTML = `
+        <div class="log-entry warn">
+          <span>[AVISO]</span>
+          <span>El servidor Companion no responde en 127.0.0.1:5000.</span>
         </div>
-      `).join("");
-    });
+      `;
+    }
+  }
+
+  renderDiagnostics(entries, serverData) {
+    const container = document.getElementById("diagnostics-logs-content");
+    if (!container) return;
+
+    const ffmpegStatus = serverData?.ffmpeg_available ? "✅ Disponible" : "⚠️ No detectado";
+    const activeDl = serverData?.active_download;
+
+    let headerHtml = `
+      <div style="margin-bottom:6px; font-size:0.7rem; color:#94a3b8; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:4px;">
+        Servidor: <strong>127.0.0.1:5000</strong> | FFmpeg: <strong>${ffmpegStatus}</strong>
+        ${activeDl && activeDl.status === 'downloading' ? ` | Descarga activa: <strong>${activeDl.percent}% (${activeDl.speed})</strong>` : ''}
+      </div>
+    `;
+
+    if (entries.length === 0) {
+      container.innerHTML = headerHtml + `
+        <div class="log-entry success">
+          <span>[OK]</span>
+          <span>Servidor Companion activo sin errores registrados.</span>
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = headerHtml + entries.map(e => `
+      <div class="log-entry ${e.level.toLowerCase()}">
+        <span style="opacity:0.6;">[${e.time_str || ''}]</span>
+        <strong>[${e.level}]</strong>
+        <span>${e.message}</span>
+      </div>
+    `).join("");
   }
 }
 
