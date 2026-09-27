@@ -9,7 +9,7 @@ echo  [*] Modo API CORS: Habilitado para extensiones de navegador.
 echo ======================================================================
 echo.
 
-python "%~dp0Nueva carpeta\gui_server.py" %*
+python "%~dp0gui_server.py" %*
 
 if %ERRORLEVEL% NEQ 0 (
     echo.

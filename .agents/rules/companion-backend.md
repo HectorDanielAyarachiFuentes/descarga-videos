@@ -1,13 +1,13 @@
 # Python Companion Backend Rules (yt-dlp Engine)
 
-Reglas y arquitectura para el backend local complementario en Python ubicado en `Nueva carpeta/` con el ejecutable raíz `run_companion.bat`.
+Reglas y arquitectura para el backend local complementario en Python ubicado en la raíz (`gui_server.py`) con el ejecutable raíz `run_companion.bat`.
 
 ---
 
 ## 1. Contexto del Servidor Companion
 
 - **Lenguaje:** Python 3.9+.
-- **Punto de Entrada:** `Nueva carpeta/gui_server.py` (lanzado con `run_companion.bat`).
+- **Punto de Entrada:** `gui_server.py` (lanzado con `run_companion.bat`).
 - **Núcleo de Descarga:** `yt-dlp` local integrado directamente en `sys.path`.
 - **Detección Multimedia:** `imageio_ffmpeg` o binarios de FFmpeg del sistema operativo para muxing de audio/video (DASH 1080p, 1440p, 4K) y extracción a MP3.
 

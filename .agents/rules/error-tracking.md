@@ -30,13 +30,13 @@ Para errores cuya causa raíz no sea evidente:
 
 1. **Rastrear el flujo de datos completo:**
    ```bash
-   node "Nueva carpeta\.gitnexus\run.cjs" trace "companionClient" "run_download_thread"
+   node .gitnexus/run.cjs trace "companionClient" "run_download_thread"
    ```
 2. **Revisar dependientes antes de parchear:**
    ```bash
-   node "Nueva carpeta\.gitnexus\run.cjs" context <SimboloSospechoso>
+   node .gitnexus/run.cjs context <SimboloSospechoso>
    ```
 3. **Verificar que el fix no cause regresiones:**
    ```bash
-   node "Nueva carpeta\.gitnexus\run.cjs" detect-changes
+   node .gitnexus/run.cjs detect-changes
    ```

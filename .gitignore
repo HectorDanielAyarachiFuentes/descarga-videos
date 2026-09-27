@@ -1,7 +1,15 @@
-# Companion local & yt-dlp core
-Nueva carpeta/
+# yt-dlp downloaded & temporary files
+*.part*
+*.ytdl
+*.frag*
+*.aria2
+*.dump
+.cache/
 *cookies.txt
 cookies.txt
+build/
+dist/
+*.egg-info/
 
 # Secrets & Environment
 .env*

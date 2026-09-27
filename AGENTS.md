@@ -15,9 +15,9 @@ Este proyecto fusiona dos mundos complementarios para ofrecer la máxima potenci
    - Gestor de colas y persistencia en `service/queue_manager.js`.
    - Componente visual de estado y diagnóstico en tiempo real (`content/companion_ui.js`).
 
-2. **Backend / Motor yt-dlp Companion (`Nueva carpeta/`):**
-   - Servidor HTTP local multihilo en Python (`Nueva carpeta/gui_server.py`), con ejecutable raíz `run_companion.bat`.
-   - Núcleo de extracción universal con `yt-dlp` y ensamblaje de streams de alta calidad (1080p, 1440p, 4K 60fps) mediante FFmpeg.
+2. **Backend / Motor yt-dlp Companion (Raíz del proyecto):**
+   - Servidor HTTP local multihilo en Python (`gui_server.py`), con ejecutable raíz `run_companion.bat`.
+   - Núcleo de extracción universal con `yt_dlp/` y ensamblaje de streams de alta calidad (1080p, 1440p, 4K 60fps) mediante FFmpeg.
    - API REST con soporte completo CORS (`GET/POST/OPTIONS`) en `http://127.0.0.1:5000`.
    - Módulo de registro y diagnóstico de errores en memoria (`ErrorLogger` y `/api/diagnostics`).
 
@@ -49,13 +49,13 @@ descarga-videos/
 │   ├── main.js                    # Punto de entrada del worker
 │   ├── queue_manager.js           # Cola de descargas de alta concurrencia
 │   └── companion_client.js        # Cliente HTTP hacia el companion local
-├── Nueva carpeta/                 # Servidor y motor yt-dlp
-│   ├── gui_server.py              # Servidor HTTP con API REST y ErrorLogger
-│   ├── run_gui.bat                # Script de inicio local
-│   ├── yt_dlp/                    # Biblioteca completa yt-dlp
-│   └── web_ui/                    # Interfaz web complementaria
+├── yt_dlp/                        # Biblioteca y extractores del motor yt-dlp
+├── web_ui/                        # Interfaz web de escritorio para yt-dlp
+├── gui_server.py                  # Servidor HTTP companion con API REST y ErrorLogger
 ├── manifest.json                  # Manifiesto V3 de la extensión de Firefox
 ├── run_companion.bat              # Lanzador raíz del servidor companion
+├── run_gui.bat                    # Lanzador rápido de la interfaz web
+├── pyproject.toml                 # Configuración de empaquetado y dependencias Python
 └── AGENTS.md                      # Este documento
 ```
 
@@ -69,20 +69,20 @@ Este repositorio utiliza **GitNexus** como Knowledge Graph de código para anali
 
 ```bash
 # Búsqueda de conceptos o flujos
-node "Nueva carpeta\.gitnexus\run.cjs" query "<concepto>"
+node .gitnexus/run.cjs query "<concepto>"
 
 # Contexto de un símbolo (llamadores y llamados)
-node "Nueva carpeta\.gitnexus\run.cjs" context <Simbolo>
+node .gitnexus/run.cjs context <Simbolo>
 
 # Blast Radius (Análisis de impacto antes de editar)
-node "Nueva carpeta\.gitnexus\run.cjs" impact <Simbolo> --direction upstream
+node .gitnexus/run.cjs impact <Simbolo> --direction upstream
 
 # Trazado de ruta entre componentes (ej: JS frontend a Python backend)
-node "Nueva carpeta\.gitnexus\run.cjs" trace <Origen> <Destino>
+node .gitnexus/run.cjs trace <Origen> <Destino>
 
 # Verificación de cambios git antes de confirmar
-node "Nueva carpeta\.gitnexus\run.cjs" detect-changes
-node "Nueva carpeta\.gitnexus\run.cjs" check
+node .gitnexus/run.cjs detect-changes
+node .gitnexus/run.cjs check
 ```
 
 ---
@@ -95,7 +95,7 @@ node "Nueva carpeta\.gitnexus\run.cjs" check
 2. **Inspeccionar Impacto con GitNexus:**
    - Antes de modificar funciones compartidas o esquemas de mensajes, ejecutar `gitnexus impact <Simbolo>`.
 3. **Validación de Sintaxis:**
-   - Python: `python -m py_compile "Nueva carpeta\gui_server.py"`.
+   - Python: `python -m py_compile "gui_server.py"`.
    - JavaScript: verificar carga limpia sin advertencias de sintaxis.
 4. **Verificación de Diff:**
    - Ejecutar `gitnexus detect-changes` para asegurar que las modificaciones no alteren flujos no deseados.
